@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - UI/UX Designer & Frontend Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Default Orange/Red Theme */
+            --gradient-1: #ff6b35;
+            --gradient-2: #f7931e;
+            --gradient-3: #ff4757;
+            --gradient-4: #c44569;
+            --accent-color: #ff6b35;
+            
+            /* Purple Theme - Uncomment to use
+            --gradient-1: #667eea;
+            --gradient-2: #764ba2;
+            --gradient-3: #f093fb;
+            --gradient-4: #4facfe;
+            --accent-color: #667eea;
+            */
+            
+            /* Dark Pink Theme - Uncomment to use
+            --gradient-1: #ff0844;
+            --gradient-2: #ffb199;
+            --gradient-3: #fa709a;
+            --gradient-4: #fee140;
+            --accent-color: #ff0844;
+            */
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation - Floating Pill */
+        nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            border-radius: 50px;
+            transition: background 0.3s, backdrop-filter 0.3s, padding 0.3s;
+            min-width: 800px;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.2rem 2.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .cta-btn {
+            background: #fff;
+            color: #000 !important;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 25%, var(--gradient-3) 75%, var(--gradient-4) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            overflow: hidden;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+
+        .hero-silhouette {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 40%, transparent 70%);
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-left {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hero-left h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-left h1 {
+            font-size: 5.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -3px;
+        }
+
+        .hero-right {
+            position: absolute;
+            right: 0;
+            top: 35%;
+            max-width: 450px;
+            text-align: left;
+        }
+
+        .hero-right h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-right p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Services Strip at Bottom */
+        .services-strip {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: transparent;
+            z-index: 2;
+        }
+
+        .service-item {
+            padding: 2.5rem 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s;
+        }
+
+        .service-item:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item h4 {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .service-item h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 4rem;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h4 {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .project-content p {
+            opacity: 0.7;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            background: #0a0a0a;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: #1a1a1a;
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card li {
+            padding: 0.8rem 0;
+            opacity: 0.8;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 50%, var(--gradient-3) 100%);
+            border-radius: 30px;
+            padding: 6rem 4rem;
+            text-align: center;
+        }
+
+        .contact-section h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        .contact-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            background: #fff;
+            color: #000;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #0a0a0a;
+            padding: 8rem 4rem !important;
+        }
+
+        .faq-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .faq-left {
+            position: sticky;
+            top: 150px;
+        }
+
+        .faq-left .section-header {
+            margin-bottom: 1rem;
+        }
+
+        .faq-left h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-left p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .faq-left .cta-btn {
+            display: inline-flex;
+        }
+
+        .faq-container {
+            width: 100%;
+        }
+
+        .faq-item {
+            background: transparent;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-item.active {
+            border-color: var(--accent-color);
+        }
+
+        .faq-question {
+            padding: 1.8rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 1.8rem 2rem;
+        }
+
+        .faq-answer p {
+            opacity: 0.7;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 4rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.3s, transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s, padding-left 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                min-width: 90%;
+            }
+
+            .hero-left h1 {
+                font-size: 4rem;
+            }
+
+            .hero-right {
+                top: auto;
+                bottom: 150px;
+                right: 0;
+            }
+
+            .services-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+
+            .faq-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .faq-left {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            nav {
+                min-width: calc(100% - 2rem);
+                padding: 1rem 1.5rem;
+            }
+
+            nav.scrolled {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .hero-left h1 {
+                font-size: 3rem;
+            }
+
+            .hero-right h3 {
+                font-size: 2rem;
+            }
+
+            .services-strip {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-section h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Folioblox®</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a class="cta-btn" href="#contact">Get in touch →</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-silhouette"></div>
+        <div class="hero-content">
+            <div class="hero-left">
+                <h2>Hey, I'm a</h2>
+                <h1>UI/UX Designer<br>& Frontend<br>Developer</h1>
+            </div>
+            <div class="hero-right">
+                <h3>Great design should feel invisible.</h3>
+                <p>From wireframe to code, I build interfaces that connect and convert.</p>
+            </div>
+        </div>
+        
+        <!-- Services Strip -->
+        <div class="services-strip">
+            <div class="service-item">
+                <h4>#01</h4>
+                <h3>UI/UX Design</h3>
+            </div>
+            <div class="service-item">
+                <h4>#02</h4>
+                <h3>Frontend Development</h3>
+            </div>
+            <div class="service-item">
+                <h4>#03</h4>
+                <h3>Responsive Design</h3>
+            </div>
+            <div class="service-item">
+                <h4>#04</h4>
+                <h3>Prototyping</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h4 class="section-header">Behind the Designs</h4>
+        <h2 class="section-title">Shaping Experiences That Make Life Simpler</h2>
+        
+        <div class="about-grid">
+            <div class="about-content">
+                <p>I'm a UI/UX designer and frontend developer passionate about creating seamless digital experiences. I bridge the gap between design and development, ensuring pixel-perfect implementations that maintain design integrity.</p>
+                <p>Designer. Developer. Creative partner. Blending clarity and creativity to build interfaces with purpose.</p>
+            </div>
+            
+            <div class="about-content">
+                <p>With a background in design, frontend development, and user experience strategy, I bring a balance of aesthetics and functionality to every project. Whether it's your first interface or a complete redesign, I'm here to guide you every step of the way.</p>
+                <p>I believe great products come from understanding users deeply and iterating relentlessly.</p>
+            </div>
+        </div>
+
+        <h4 class="section-header" style="margin-top: 6rem;">Who I Am</h4>
+        <h2 class="section-title">Design with Purpose and Personality</h2>
+        <p class="section-subtitle">I'm a UI/UX designer with 5+ years of experience helping startups, creatives, and growing businesses build interfaces that feel intuitive and delightful. With expertise in user research, interface design, and modern web technologies, I transform complex problems into elegant solutions.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h4 class="section-header">Selected Work</h4>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Real brands, real results</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🎨</div>
+                <div class="project-content">
+                    <h4>UI/UX Design</h4>
+                    <h3>E-commerce Platform</h3>
+                    <p>Complete redesign of an e-commerce platform focusing on conversion optimization and seamless checkout experience.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">💻</div>
+                <div class="project-content">
+                    <h4>Frontend Development</h4>
+                    <h3>SaaS Dashboard</h3>
+                    <p>Built a responsive analytics dashboard with React and Tailwind featuring real-time data visualization.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">📱</div>
+                <div class="project-content">
+                    <h4>Mobile App Design</h4>
+                    <h3>Fitness Tracker</h3>
+                    <p>Designed an intuitive mobile app for tracking workouts and nutrition with social sharing features.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">🌐</div>
+                <div class="project-content">
+                    <h4>Web Development</h4>
+                    <h3>Creative Portfolio</h3>
+                    <p>Developed a modern portfolio site with smooth scroll animations and interactive elements.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">🎯</div>
+                <div class="project-content">
+                    <h4>Design System</h4>
+                    <h3>Component Library</h3>
+                    <p>Created a comprehensive design system with reusable components for a fintech startup.</p>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">✨</div>
+                <div class="project-content">
+                    <h4>Interactive Design</h4>
+                    <h3>Landing Page</h3>
+                    <p>Designed and coded an award-winning landing page with creative scroll-triggered animations.</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="section-header" style="margin-top: 6rem;">Selected Work</h4>
+        <h2 class="section-title">Bringing Brands to Life Through Design</h2>
+        <p class="section-subtitle">A curated collection of visual identities, user interfaces, and creative systems built for impact.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <h4 class="section-header">Services</h4>
+        <h2 class="section-title">What I Can Help You With</h2>
+        <p class="section-subtitle">From strategy to visuals, I offer tailored services to help your brand grow with clarity and impact.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>UI/UX Design</h3>
+                <ul>
+                    <li>User Research</li>
+                    <li>Wireframing & Prototyping</li>
+                    <li>Interface Design</li>
+                    <li>Usability Testing</li>
+                    <li>Design Systems</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3>Frontend Development</h3>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>React Development</li>
+                    <li>Responsive Design</li>
+                    <li>Animation & Interactions</li>
+                    <li>Performance Optimization</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <h3>Design Strategy</h3>
+                <ul>
+                    <li>Brand Guidelines</li>
+                    <li>Design Audits</li>
+                    <li>Competitive Analysis</li>
+                    <li>Information Architecture</li>
+                    <li>Design Consulting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-section">
+            <h4>Get in Touch</h4>
+            <h2>Let's build something great together—start the conversation today.</h2>
+            <a href="mailto:your.email@example.com" class="contact-btn">Contact →</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-wrapper">
+            <div class="faq-left">
+                <h4 class="section-header">Frequently Asked Questions</h4>
+                <h2>Answers to Common Questions</h2>
+                <p>From timelines to process details, here are quick answers to the most frequent questions I get.</p>
+                <a href="#contact" class="cta-btn">Contact me →</a>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's your design process?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>My design process typically involves five key phases: Discovery & Research, where I understand your goals and users; Wireframing & Information Architecture, where I map out the structure; UI Design, where I create the visual interface; Prototyping & Testing, where we validate the design; and finally, Development Handoff with detailed documentation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does a typical project take?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on scope and complexity. A simple landing page or UI design might take 2-3 weeks, while a complete web application with frontend development could take 2-3 months. During our initial consultation, I'll provide a detailed timeline based on your specific requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer payment plans?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, most projects are split into 2-3 payments. Typically, I require a deposit to start, a midpoint payment after key milestones, and a final payment upon project completion. We can discuss a payment structure that works for your budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can you also design my website?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! I offer basic web design or collaborate with developers. I can handle the entire process from design to development, or work alongside your development team to ensure the design is implemented perfectly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you work with international clients?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I work with clients worldwide through video calls, project management tools, and collaborative design platforms. I'm experienced in remote collaboration and ensure smooth communication regardless of timezone differences.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What do I need to get started?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To get started, I'll need a clear understanding of your project goals, target audience, any existing brand materials, and your timeline. During our initial consultation, we'll discuss all the details and I'll provide you with a comprehensive project proposal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Folioblox®</h3>
+                <p>UI/UX Designer & Frontend Developer creating seamless digital experiences that users love.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Twitter">𝕏</a>
+                    <a href="#" aria-label="Dribbble">Dr</a>
+                    <a href="#" aria-label="GitHub">GH</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">UI/UX Design</a></li>
+                    <li><a href="#services">Frontend Development</a></li>
+                    <li><a href="#services">Responsive Design</a></li>
+                    <li><a href="#services">Prototyping</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                    <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                    <li><a href="#">Schedule a Call</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2024 Folioblox. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
