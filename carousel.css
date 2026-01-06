@@ -261,7 +261,7 @@
     height: 220px;
   }
 
-  .carousel-banner{
+  .carousel-banner {
     perspective: 255px;
   }
 
@@ -292,8 +292,8 @@
 
 @media screen and (max-width: 768px) {
   .carousel-slider {
-    width: 130px;
-    height: 180px;
+    width: 170px;
+    height: 240px;
     top: 15%;
   }
 
@@ -310,7 +310,7 @@
   .zoomed-card.expanded {
     width: 90% !important;
     max-width: 350px !important;
-    min-height: auto;
+    min-height: max-content;
   }
 
   .zoomed-card.expanded .zoomed-card-image {
@@ -332,6 +332,18 @@
   .zoomed-card-stats {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .epic-god-wrapper {
+    right: -20% !important;
+    top: 5% !important;
+    width: 75% !important;
+  }
+
+  .epic-adam-wrapper {
+    left: -5% !important;
+    bottom: 60% !important;
+    width: 65% !important;
   }
 }
 
@@ -583,34 +595,6 @@ body {
   }
 }
 
-.project-gradient-1 {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4757 100%);
-}
-
-.project-gradient-2 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.project-gradient-3 {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.project-gradient-4 {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-}
-
-.project-gradient-5 {
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-}
-
-.project-gradient-6 {
-  background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-}
-
-.contact-gradient {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff4757 100%);
-}
-
 .faq-answer {
   max-height: 0;
   overflow: hidden;
@@ -655,6 +639,8 @@ body {
   border-color: rgba(255, 255, 255, 0.3); /* Stronger border */
   backdrop-filter: blur(6px); /* More blur */
 }
+
+/* services card style */
 
 .art-deco-card {
   display: flex;
