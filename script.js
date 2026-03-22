@@ -246,6 +246,56 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleFaq(this);
     });
   });
+
+  // ============================================
+  // CONTACT FORM - EmailJS
+  // ============================================
+  const contactForm = document.getElementById("contactForm");
+  const submitBtn = document.getElementById("submitBtn");
+
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Combine first + last name into {{name}} for the template
+    const firstName = contactForm.querySelector('[name="first_name"]').value;
+    const lastName = contactForm.querySelector('[name="last_name"]').value;
+
+    // Temporarily set a hidden name field for EmailJS
+    let nameField = contactForm.querySelector('[name="name"]');
+    if (!nameField) {
+      nameField = document.createElement("input");
+      nameField.type = "hidden";
+      nameField.name = "name";
+      contactForm.appendChild(nameField);
+    }
+    nameField.value = `${firstName} ${lastName}`;
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    emailjs
+      .sendForm("service_dzuqfti", "template_gyai811", contactForm)
+      .then(() => {
+        submitBtn.textContent = "✓ Message Sent!";
+        submitBtn.classList.replace("bg-orange-600", "bg-green-600");
+        contactForm.reset();
+        setTimeout(() => {
+          submitBtn.textContent = "Submit";
+          submitBtn.classList.replace("bg-green-600", "bg-orange-600");
+          submitBtn.disabled = false;
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        submitBtn.textContent = "Failed. Try again.";
+        submitBtn.classList.replace("bg-orange-600", "bg-red-600");
+        setTimeout(() => {
+          submitBtn.textContent = "Submit";
+          submitBtn.classList.replace("bg-red-600", "bg-orange-600");
+          submitBtn.disabled = false;
+        }, 3000);
+      });
+  });
 });
 
 // Hero animation on page load with GSAP
@@ -264,7 +314,7 @@ window.addEventListener("load", () => {
       opacity: 1,
       duration: 2.5, // Slower duration
       ease: "power4.out", // Smoother easing
-    }
+    },
   )
     .fromTo(
       ".epic-god-wrapper",
@@ -275,7 +325,7 @@ window.addEventListener("load", () => {
         duration: 2.5, // Slower duration
         ease: "power4.out", // Smoother easing
       },
-      "<" // Start at the same time
+      "<", // Start at the same time
     )
 
     // Wait for images to settle, then animate navbar
@@ -283,7 +333,7 @@ window.addEventListener("load", () => {
       "#navbar",
       { y: -30, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
-      "+=0.5" // Wait 0.5s after images finish
+      "+=0.5", // Wait 0.5s after images finish
     )
 
     // Stagger hero content children (h2, h1, h3, p)
@@ -297,7 +347,7 @@ window.addEventListener("load", () => {
         stagger: 0.15, // 0.15s delay between each element
         ease: "power3.out",
       },
-      "-=0.5" // Start slightly before navbar finishes
+      "-=0.5", // Start slightly before navbar finishes
     )
 
     // Stagger services strip items
@@ -312,7 +362,7 @@ window.addEventListener("load", () => {
         stagger: 0.1, // 0.1s delay between each service card
         ease: "back.out(1.2)",
       },
-      "-=0.4"
+      "-=0.4",
     );
 });
 
@@ -354,7 +404,7 @@ aboutTL1
       duration: 1,
       ease: "power3.out",
     },
-    "-=0.3"
+    "-=0.3",
   )
   .from(
     "#about .grid > div:first-child p",
@@ -365,7 +415,7 @@ aboutTL1
       stagger: 0.15,
       ease: "power3.out",
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     "#about .grid > div:last-child p",
@@ -376,7 +426,7 @@ aboutTL1
       stagger: 0.15,
       ease: "power3.out",
     },
-    "<"
+    "<",
   );
 
 // "Who I Am" section animation (separate trigger)
@@ -403,7 +453,7 @@ aboutTL2
       duration: 1,
       ease: "power3.out",
     },
-    "-=0.3"
+    "-=0.3",
   )
   .from(
     "#about > p",
@@ -414,7 +464,7 @@ aboutTL2
       duration: 1,
       ease: "power3.out",
     },
-    "-=0.4"
+    "-=0.4",
   );
 
 // ============================================
@@ -441,7 +491,7 @@ gsap
       duration: 0.8,
       ease: "power3.out",
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     "#projects .absolute.top-0 p",
@@ -450,7 +500,7 @@ gsap
       opacity: 0,
       duration: 0.6,
     },
-    "-=0.5"
+    "-=0.5",
   )
   .from(
     "#projects .absolute.bottom-12 > div",
@@ -461,7 +511,7 @@ gsap
       stagger: 0.1,
       ease: "power3.out",
     },
-    "-=0.5"
+    "-=0.5",
   );
 
 // ============================================
@@ -488,7 +538,7 @@ gsap
       duration: 0.8,
       ease: "power3.out",
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     "#services > div > p",
@@ -498,7 +548,7 @@ gsap
       duration: 0.6,
       ease: "power3.out",
     },
-    "-=0.5"
+    "-=0.5",
   )
   .from(
     "#services .grid > div",
@@ -509,7 +559,7 @@ gsap
       stagger: 0.2, // Increased stagger
       ease: "power3.out",
     },
-    "-=0.3"
+    "-=0.3",
   );
 
 // ============================================
@@ -534,7 +584,7 @@ gsap
       opacity: 0,
       duration: 0.8,
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     "#contact p",
@@ -544,7 +594,7 @@ gsap
       duration: 0.6,
       stagger: 0.1,
     },
-    "-=0.5"
+    "-=0.5",
   )
   .from(
     "#contact .flex.gap-6 a",
@@ -555,7 +605,7 @@ gsap
       stagger: 0.1,
       ease: "back.out(1.7)",
     },
-    "-=0.3"
+    "-=0.3",
   )
   .from(
     "#contact form",
@@ -564,7 +614,7 @@ gsap
       opacity: 0,
       duration: 0.8,
     },
-    "-=0.8"
+    "-=0.8",
   );
 
 // ============================================
@@ -589,7 +639,7 @@ gsap
       opacity: 0,
       duration: 0.8,
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     "#faq .sticky p",
@@ -598,7 +648,7 @@ gsap
       opacity: 0,
       duration: 0.6,
     },
-    "-=0.5"
+    "-=0.5",
   )
   .from(
     "#faq .sticky a",
@@ -608,7 +658,7 @@ gsap
       duration: 0.6,
       ease: "back.out(1.2)",
     },
-    "-=0.4"
+    "-=0.4",
   )
   .from(
     ".faq-item",
@@ -618,7 +668,7 @@ gsap
       duration: 0.6,
       stagger: 0.1,
     },
-    "-=0.6"
+    "-=0.6",
   );
 
 // ============================================
@@ -644,5 +694,5 @@ gsap
       opacity: 0,
       duration: 0.6,
     },
-    "-=0.3"
+    "-=0.3",
   );

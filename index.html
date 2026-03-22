@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth overflow-x-hidden" >
+<!doctype html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +28,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init("OJ6anVfhwH-_67vFG");
+    </script>
   </head>
   <body class="bg-black text-white overflow-x-hidden">
     <!-- Navigation -->
@@ -594,7 +598,7 @@
 
         <!-- Right Column - Form -->
         <div class="mt-10 lg:mt-0 p-6 md:p-10 bg-[#141414] rounded-[30px]">
-          <form class="space-y-6">
+          <form id="contactForm" class="space-y-6">
             <!-- Name Fields -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -603,6 +607,7 @@
                 </label>
                 <input
                   type="text"
+                  name="first_name"
                   placeholder="Jane"
                   class="w-full bg-neutral-800 border-2 border-transparent rounded-full px-4 md:px-6 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors"
                   required
@@ -614,6 +619,7 @@
                 </label>
                 <input
                   type="text"
+                  name="last_name"
                   placeholder="Smith"
                   class="w-full bg-neutral-800 border-2 border-transparent rounded-full px-4 md:px-6 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors"
                   required
@@ -628,6 +634,7 @@
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="jane@email.com"
                 class="w-full bg-neutral-800 border-2 border-transparent rounded-full px-4 md:px-6 py-3 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors"
                 required
@@ -640,6 +647,7 @@
                 Message <span class="text-orange-500">*</span>
               </label>
               <textarea
+                name="message"
                 placeholder="Type your message..."
                 rows="6"
                 class="w-full bg-neutral-800 border-2 border-transparent rounded-3xl px-4 md:px-6 py-4 text-sm md:text-base text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors resize-none"
@@ -650,7 +658,8 @@
             <!-- Submit Button -->
             <button
               type="submit"
-              class="w-full bg-orange-600 hover:bg-orange-600 text-white text-base md:text-lg font-semibold py-3.5 px-6 md:px-8 rounded-full transition-colors"
+              id="submitBtn"
+              class="w-full bg-orange-600 hover:bg-orange-500 text-white text-base md:text-lg font-semibold py-3.5 px-6 md:px-8 rounded-full transition-colors"
             >
               Submit
             </button>
@@ -660,7 +669,10 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20 md:py-32 px-6 md:px-16 bg-neutral-900 overflow-x-hidden">
+    <section
+      id="faq"
+      class="py-20 md:py-32 px-6 md:px-16 bg-neutral-900 overflow-x-hidden"
+    >
       <div class="max-w-[1400px] mx-auto">
         <div
           class="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 md:gap-24 items-start"
